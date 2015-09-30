@@ -1,0 +1,9 @@
+<ion-view view-title="{{pageTitle}} Meditations">
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="meditation in meditations" href="#/app/meditation/{{meditation.id}}">
+        {{meditation.title}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

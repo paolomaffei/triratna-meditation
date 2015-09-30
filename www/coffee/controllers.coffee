@@ -1,56 +1,61 @@
-angular.module('starter.controllers', [])
+categories = [
+  {
+    title: "Body Scan"
+    id: "body-scan"
+  }
+  {
+    title: "Mindfulness of Breathing"
+    id: "mindfulness-of-breathing"
+  }
+  {
+    title: "Metta Bhavana"
+    id: "metta-bhavana"
+  }
+]
 
-.controller('AppCtrl', ($scope, $ionicModal, $timeout) ->
-  # Form data for the login modal
-  $scope.loginData = {}
+meditations = [
+  {
+    title: "Body Scan by Vidyamala"
+    id: "body-scan1"
+    parentId: "body-scan"
+    duration: "33.22"
+  }
+  {
+    title: "Body Scan by yyyy"
+    id: "body-scan2"
+    parentId: "body-scan"
+    duration: "24.22"
+  }
+  {
+    title: "Short Body Scan"
+    id: "body-scan3"
+    parentId: "body-scan"
+    duration: "2.00"
+  }
+  {
+    title: "Short Mindfulness of Breathing"
+    id: "mob1"
+    parentId: "mindfulness-of-breathing"
+    duration: "20.00"
+  }
+]
 
-  # Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/login.html', scope: $scope).then (modal) ->
-    $scope.modal = modal
- 
-  # Triggered in the login modal to close it
-  $scope.closeLogin = ->
-    $scope.modal.hide()
+mod = angular.module('starter.controllers', [])
 
-  # Open the login modal
-  $scope.login = ->
-    $scope.modal.show()
+mod.controller "AppCtrl", ($scope) ->
 
-  # Perform the login action when the user submits the login form
-  $scope.doLogin = ->
-    console.log 'Doing login', $scope.loginData
-    # Simulate a login delay. Remove this and replace with your login
-    # code if using a login system
-    $timeout (-> $scope.closeLogin()), 1000
-)
+mod.controller "CategoriesCtrl", ($scope) ->
+  $scope.categories = categories
 
-.controller('PlaylistsCtrl', ($scope) ->
-  $scope.playlists = [
-    {
-      title: 'Reggaecoffee'
-      id: 1
-    }
-    {
-      title: 'Chill'
-      id: 2
-    }
-    {
-      title: 'Dubstep'
-      id: 3
-    }
-    {
-      title: 'Indie'
-      id: 4
-    }
-    {
-      title: 'Rap'
-      id: 5
-    }
-    {
-      title: 'Cowbell'
-      id: 6
-    }
-  ]
-)
+mod.controller "CategoryCtrl", ($scope, $stateParams, _) ->
+  
+  #get the title of the category
+  $scope.pageTitle = _.find(categories, (category) ->
+    $stateParams.categoryId == category.id
+  ).title
+  
+  #get meditations in the category
+  $scope.meditations = _.filter meditations, (meditation) ->
+    return $stateParams.categoryId == meditation.parentId
 
-.controller 'PlaylistCtrl', ($scope, $stateParams) ->
+mod.controller "MeditationCtrl", ($scope, $stateParams) ->
