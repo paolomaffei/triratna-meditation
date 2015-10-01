@@ -58,4 +58,25 @@ mod.controller "CategoryCtrl", ($scope, $stateParams, _) ->
   $scope.meditations = _.filter meditations, (meditation) ->
     return $stateParams.categoryId == meditation.parentId
 
-mod.controller "MeditationCtrl", ($scope, $stateParams) ->
+mod.controller "MeditationCtrl", ($scope, $stateParams, $cordovaMedia) ->
+  if ionic.Platform.isWebView()
+  
+    src = "resources/audio.mp3"
+    
+    getMediaURL = (s) ->
+      if ionic.Platform.isAndroid() then return "/android_asset/www/" + s
+      else return s
+    
+    mediaError = (e) ->
+      alert('Media Error!');
+      alert(JSON.stringify(e));
+    
+    media = $cordovaMedia.newMedia getMediaURL src, null, mediaError
+    
+    $scope.play = ->
+      media.play()
+      
+    $scope.stop = ->
+      media.pause()
+  else
+    console.log "running in web browser"

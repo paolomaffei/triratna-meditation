@@ -18,6 +18,7 @@
   },
   "cordovaPlugins": [
     "cordova-plugin-device",
+    "cordova-plugin-media",
     "cordova-plugin-console",
     "cordova-plugin-whitelist",
     "cordova-plugin-splashscreen",

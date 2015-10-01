@@ -2,6 +2,7 @@ app = angular.module('starter', [
   'ionic'
   'starter.controllers'
   'underscore'
+  'ngCordova'
 ])
 
 app.run ($ionicPlatform) ->
