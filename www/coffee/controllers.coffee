@@ -58,25 +58,40 @@ mod.controller "CategoryCtrl", ($scope, $stateParams, _) ->
   $scope.meditations = _.filter meditations, (meditation) ->
     return $stateParams.categoryId == meditation.parentId
 
-mod.controller "MeditationCtrl", ($scope, $stateParams, $cordovaMedia) ->
+mod.controller "MeditationCtrl", ($scope, $stateParams, $ionicLoading) ->
   if ionic.Platform.isWebView()
+    ionic.Platform.ready ->
   
-    src = "resources/audio.mp3"
-    
-    getMediaURL = (s) ->
-      if ionic.Platform.isAndroid() then return "/android_asset/www/" + s
-      else return s
-    
-    mediaError = (e) ->
-      alert('Media Error!');
-      alert(JSON.stringify(e));
-    
-    media = $cordovaMedia.newMedia getMediaURL src, null, mediaError
-    
-    $scope.play = ->
-      media.play()
+      src = "resources/audio.mp3"
       
-    $scope.stop = ->
-      media.pause()
+      getMediaURL = (s) ->
+        if ionic.Platform.isAndroid() then return "/android_asset/www/" + s
+        else return s
+      
+      mediaError = (e) ->
+        alert('Media Error!');
+        alert(JSON.stringify(e));
+      
+      changeMediaStatus = (s) ->        
+        if s == Media.MEDIA_RUNNING
+          $scope.isPlaying = true
+        else
+          $scope.isPlaying = false
+        if s == Media.MEDIA_STARTING
+          $ionicLoading.show {template: 'Loading...'}
+        else
+          $ionicLoading.hide()
+        
+        console.log "media status change", s, $scope.isPlaying
+        
+      media = new Media getMediaURL(src), changeMediaStatus, mediaError, changeMediaStatus
+      
+      $scope.isPlaying = false
+      
+      $scope.play = ->
+        media.play()
+        
+      $scope.stop = ->
+        media.pause()
   else
     console.log "running in web browser"

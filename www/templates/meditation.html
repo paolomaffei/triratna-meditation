@@ -1,7 +1,7 @@
 <ion-view view-title="Meditation">
   <ion-content>
     <h1>Meditation</h1>
-    <a ng-click="play()">play</a>
-    <a ng-click="stop()">stop</a>
+    <button class="button button-positive button-large icon ion-play" ng-click="play()" ng-hide="isPlaying"></button>
+    <button class="button button-positive button-large icon ion-pause" ng-click="stop()" ng-show="isPlaying"></button>
   </ion-content>
 </ion-view>
