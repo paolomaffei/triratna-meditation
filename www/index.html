@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'"> <!-- enable live-reload to work for ionic ios and android emulator -->
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'"> <!-- enable live-reload to work for ionic ios and android emulator -->
     <title></title>
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
@@ -15,6 +15,9 @@
     <script src="cordova.js"></script>
     <script src="lib/underscore/underscore.js"></script>
     <script src="lib/angular-underscore-module/angular-underscore-module.js"></script>
+    <script src="lib/moment/min/moment.min.js"></script>
+    <script src="lib/angular-momentjs/angular-momentjs.js"></script>
+    <script src="lib/moment-duration-format/lib/moment-duration-format.js"></script>
     <script src="js/application.js"></script>
   </head>
 

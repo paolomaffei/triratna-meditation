@@ -1,7 +1,10 @@
-<ion-view view-title="Meditation">
+<ion-view view-title="{{pageTitle}}">
   <ion-content>
-    <h1>Meditation</h1>
-    <button class="button button-positive button-large icon ion-play" ng-click="play()" ng-hide="isPlaying"></button>
-    <button class="button button-positive button-large icon ion-pause" ng-click="stop()" ng-show="isPlaying"></button>
+    <div class="card padding text-center">
+      <button class="button button-positive button-large button-block icon ion-play" ng-click="play()" ng-hide="isPlaying"></button>
+      <button class="button button-positive button-large button-block icon ion-pause" ng-click="pause()" ng-show="isPlaying"></button>
+      
+      <a>{{position | formatTime:"hh:mm:ss":false}} / {{duration}}</a>
+    </div>
   </ion-content>
 </ion-view>

@@ -40,8 +40,9 @@ meditations = [
   }
 ]
 
-mod = angular.module('starter.controllers', [])
+mod = angular.module("starter.controllers", ["angular-momentjs"])
 
+#controllers
 mod.controller "AppCtrl", ($scope) ->
 
 mod.controller "CategoriesCtrl", ($scope) ->
@@ -50,8 +51,8 @@ mod.controller "CategoriesCtrl", ($scope) ->
 mod.controller "CategoryCtrl", ($scope, $stateParams, _) ->
   
   #get the title of the category
-  $scope.pageTitle = _.find(categories, (category) ->
-    $stateParams.categoryId == category.id
+  $scope.pageTitle = _.find(categories, (c) ->
+    $stateParams.categoryId == c.id
   ).title
   
   #get meditations in the category
@@ -59,6 +60,13 @@ mod.controller "CategoryCtrl", ($scope, $stateParams, _) ->
     return $stateParams.categoryId == meditation.parentId
 
 mod.controller "MeditationCtrl", ($scope, $stateParams, $ionicLoading) ->
+  #get the title of the meditation
+  meditationObject = _.find(meditations, (m) ->
+    $stateParams.meditationId == m.id
+  )
+  
+  $scope.pageTitle = meditationObject.title
+  
   if ionic.Platform.isWebView()
     ionic.Platform.ready ->
   
@@ -82,16 +90,66 @@ mod.controller "MeditationCtrl", ($scope, $stateParams, $ionicLoading) ->
         else
           $ionicLoading.hide()
         
-        console.log "media status change", s, $scope.isPlaying
-        
-      media = new Media getMediaURL(src), changeMediaStatus, mediaError, changeMediaStatus
-      
-      $scope.isPlaying = false
+        console.log "media status change", s, $scope.isPlaying, media.getDuration()
       
       $scope.play = ->
         media.play()
         
-      $scope.stop = ->
+      $scope.pause = ->
         media.pause()
+        
+      media = new Media getMediaURL(src), null, mediaError, changeMediaStatus
+      
+      #defaults
+      $scope.isPlaying = false
+      $scope.duration = meditationObject.duration #.getDuration() returns -1 even when media is ready!
+      $scope.position = 0
+      
+      #getCurrentPosition timer
+      successCb = (position) ->
+        if position > -1
+          $scope.position = parseInt(position)
+          $scope.$apply()
+      errorCb = (e) ->
+        console.log "Error getting position", e
+      
+      intervalFunction = ->
+        media.getCurrentPosition successCb, errorCb
+      
+      mediaTimer = setInterval intervalFunction, 500
+      
   else
     console.log "running in web browser"
+
+#filters
+#alternatively use time.format "h [hour], m [minutes], s [seconds]":false
+mod.filter "secondsToHoursMinutesAndSeconds", ->
+  filter = (seconds) ->
+    s = seconds%60
+    m = parseInt(seconds/60)
+    
+    h = 0
+    if m > 60
+      h = parseInt(m/60)
+      m - h*60
+    
+    if h
+      if m > 0
+        return h + " hour and " + m + " minutes"
+      else
+        return h + " hour"
+    else
+      if s > 0
+        return m + " minutes and " + s + " seconds"
+      else
+        return m + " minutes"
+  
+  return filter
+
+mod.filter "formatTime", ($moment) ->
+  filter = (seconds, format, trim) ->
+  
+    time = $moment.duration {seconds: seconds}
+    return time.format format, { trim: trim } #false = full padded outputs
+  
+  return filter
