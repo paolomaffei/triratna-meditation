@@ -100,6 +100,12 @@ mod.controller "MeditationCtrl", ($scope, $stateParams, $ionicLoading) ->
         
       media = new Media getMediaURL(src), null, mediaError, changeMediaStatus
       
+      #clear up resources on leaving page
+      $scope.$on "$ionicView.leave", ->
+        console.log "$ionicView.leave"
+        media.stop()
+        media.release()
+        
       #defaults
       $scope.isPlaying = false
       $scope.duration = meditationObject.duration #.getDuration() returns -1 even when media is ready!
