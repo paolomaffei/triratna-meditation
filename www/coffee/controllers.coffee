@@ -16,27 +16,33 @@ categories = [
 meditations = [
   {
     title: "Body Scan by Vidyamala"
-    id: "body-scan1"
+    id: "body-scan-long-vidyamala"
     parentId: "body-scan"
-    duration: "33.22"
-  }
-  {
-    title: "Body Scan by yyyy"
-    id: "body-scan2"
-    parentId: "body-scan"
-    duration: "24.22"
-  }
-  {
-    title: "Short Body Scan"
-    id: "body-scan3"
-    parentId: "body-scan"
-    duration: "2.00"
+    duration: "32.58"
   }
   {
     title: "Short Mindfulness of Breathing"
-    id: "mob1"
+    id: "mindfulness-of-breathing-short-kamalashila"
     parentId: "mindfulness-of-breathing"
-    duration: "20.00"
+    duration: "20.36"
+  }
+  {
+    title: "Long Mindfulness of Breathing"
+    id: "mindfulness-of-breathing-long-jinananda"
+    parentId: "mindfulness-of-breathing"
+    duration: "34.09"
+  }
+  {
+    title: "Short Metta Bhavana"
+    id: "metta-bhavana-short-kamalashila"
+    parentId: "metta-bhavana"
+    duration: "18.55"
+  }
+  {
+    title: "Long Metta Bhavana"
+    id: "metta-bhavana-long-kamalashila"
+    parentId: "metta-bhavana"
+    duration: "41.57"
   }
 ]
 
@@ -70,7 +76,7 @@ mod.controller "MeditationCtrl", ($scope, $stateParams, $ionicLoading) ->
   if ionic.Platform.isWebView()
     ionic.Platform.ready ->
   
-      src = "resources/audio.mp3"
+      src = "resources/" + meditationObject.id + ".mp3"
       
       getMediaURL = (s) ->
         if ionic.Platform.isAndroid() then return "/android_asset/www/" + s

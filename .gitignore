@@ -7,3 +7,4 @@ plugins/
 www/js
 www/lib
 *.DS_Store
+www/resources/*.mp3
