@@ -107,8 +107,8 @@ mod.controller "MeditationCtrl", ($scope, $stateParams, $ionicLoading) ->
       media = new Media getMediaURL(src), null, mediaError, changeMediaStatus
       
       #clear up resources on leaving page
-      $scope.$on "$ionicView.leave", ->
-        console.log "$ionicView.leave"
+      $scope.$on "$ionicView.beforeLeave", ->
+        console.log "$ionicView.beforeLeave"
         media.stop()
         media.release()
         
