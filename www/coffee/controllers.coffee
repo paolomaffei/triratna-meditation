@@ -83,8 +83,8 @@ mod.controller "MeditationCtrl", ($scope, $stateParams, $ionicLoading) ->
         else return s
       
       mediaError = (e) ->
-        alert('Media Error!');
-        alert(JSON.stringify(e));
+        console.log "Media Error!"
+        console.log JSON.stringify e
       
       changeMediaStatus = (s) ->        
         if s == Media.MEDIA_RUNNING
@@ -109,8 +109,9 @@ mod.controller "MeditationCtrl", ($scope, $stateParams, $ionicLoading) ->
       #clear up resources on leaving page
       $scope.$on "$ionicView.beforeLeave", ->
         console.log "$ionicView.beforeLeave"
-        media.stop()
-        media.release()
+        if media
+          media.stop()
+          media.release()
         
       #defaults
       $scope.isPlaying = false
