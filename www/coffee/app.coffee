@@ -1,4 +1,4 @@
-app = angular.module('starter', [
+app = angular.module('TriratnaMeditation', [
   'ionic'
   'starter.controllers'
   'underscore'
