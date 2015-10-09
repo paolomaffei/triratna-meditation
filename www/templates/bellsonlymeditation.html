@@ -1,0 +1,20 @@
+<ion-view view-title="{{pageTitle}}">
+  <ion-content>
+    
+    <div class="card padding text-center animated bounceIn">
+      <h1>{{categoryTitle}}</h1>
+      
+      <!-- <div ng-if="ready"> -->
+        <button class="button button-positive button-large button-block icon ion-play" ng-click="play()" ng-if="!isPlaying"></button>
+        <button class="button button-positive button-large button-block icon ion-pause" ng-click="pause()" ng-if="isPlaying"></button>
+      <!-- </div> -->
+      <h3>{{position | formatTime:"mm:ss":false}} / {{duration | formatTime:"mm:ss":false}}</h3>
+    </div>
+    
+    <div class="card padding text-center animated bounceIn">
+      <h3>Stage: {{currentStage}} / {{stages}}</h3>
+      <div>{{stagePosition | formatTime:"mm:ss":false}}/{{stageDuration | formatTime:"mm:ss":false}}</div>
+    </div>
+    
+  </ion-content>
+</ion-view>

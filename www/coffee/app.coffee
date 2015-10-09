@@ -41,12 +41,20 @@ app.config ($stateProvider, $urlRouterProvider) ->
           controller: 'CategoryCtrl'
     )
     
-     .state('app.meditation',
-      url: '/meditation/:meditationId'
+     .state('app.ledmeditation',
+      url: '/led-meditation/:meditationId'
       views:
         menuContent:
-          templateUrl: 'templates/meditation.html'
-          controller: 'MeditationCtrl'
+          templateUrl: 'templates/ledmeditation.html'
+          controller: 'LedMeditationCtrl'
+    )
+    
+    .state('app.bellsonlymeditation',
+      url: '/bells-only-meditation/:meditationId'
+      views:
+        menuContent:
+          templateUrl: 'templates/bellsonlymeditation.html'
+          controller: 'BellsOnlyMeditationCtrl'
     )
 
   # if none of the above states are matched, use this as the fallback
