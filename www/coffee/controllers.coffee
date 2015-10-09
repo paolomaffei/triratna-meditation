@@ -2,20 +2,23 @@ categories = [
   {
     title: "Body Scan"
     id: "body-scan"
+    description: "The body scan involves systematically <b>sweeping through the body with the mind</b>, bringing an affectionate, openhearted, interested attention to its various regions"
   }
   {
     title: "Mindfulness of Breathing"
     id: "mindfulness-of-breathing"
+    description: "The ‘Mindfulness of Breathing’ uses the <b>breath as an object of concentration</b>. By focusing on the breath you become aware of the mind’s tendency to jump from one thing to another."
   }
   {
     title: "Metta Bhavana"
     id: "metta-bhavana"
+    description: "Metta means ‘love’ (in a non-romantic sense), friendliness, or kindness: hence <b>‘loving-kindness’</b>. It is an emotion, something you feel in your heart. Bhavana means development or cultivation."
   }
 ]
 
 meditations = [
   {
-    title: "Body Scan by Vidyamala"
+    title: "Body Scan"
     id: "body-scan-long-vidyamala"
     parentId: "body-scan"
     duration: "32.58"
@@ -46,6 +49,20 @@ meditations = [
   }
 ]
 
+getCategoryById = (categoryId) ->
+  _.find(categories, (c) ->
+    categoryId == c.id
+  )
+  
+getMeditationById = (meditationId) ->
+  _.find(meditations, (m) ->
+    meditationId == m.id
+  )
+
+getMeditationsByCategory = (categoryId) ->
+  _.filter meditations, (meditation) ->
+    return categoryId == meditation.parentId
+
 mod = angular.module("starter.controllers", ["angular-momentjs"])
 
 #controllers
@@ -57,21 +74,25 @@ mod.controller "CategoriesCtrl", ($scope) ->
 mod.controller "CategoryCtrl", ($scope, $stateParams, _) ->
   
   #get the title of the category
-  $scope.pageTitle = _.find(categories, (c) ->
-    $stateParams.categoryId == c.id
-  ).title
+  $scope.pageTitle = getCategoryById($stateParams.categoryId).title
   
   #get meditations in the category
-  $scope.meditations = _.filter meditations, (meditation) ->
-    return $stateParams.categoryId == meditation.parentId
+  $scope.meditations = getMeditationsByCategory $stateParams.categoryId
 
 mod.controller "MeditationCtrl", ($scope, $stateParams, $ionicLoading) ->
   #get the title of the meditation
-  meditationObject = _.find(meditations, (m) ->
-    $stateParams.meditationId == m.id
-  )
+  meditationObject = getMeditationById($stateParams.meditationId)
+  
+  #get category description and stages
+  categoryObject = getCategoryById(meditationObject.parentId)
+  $scope.description = categoryObject.description
+  $scope.stages = categoryObject.stages
   
   $scope.pageTitle = meditationObject.title
+  #media defaults
+  $scope.isPlaying = false
+  $scope.duration = meditationObject.duration #media.getDuration() returns -1 even when media is ready!
+  $scope.position = 0
   
   if ionic.Platform.isWebView()
     ionic.Platform.ready ->
@@ -112,11 +133,6 @@ mod.controller "MeditationCtrl", ($scope, $stateParams, $ionicLoading) ->
         if media
           media.stop()
           media.release()
-        
-      #defaults
-      $scope.isPlaying = false
-      $scope.duration = meditationObject.duration #.getDuration() returns -1 even when media is ready!
-      $scope.position = 0
       
       #getCurrentPosition timer
       successCb = (position) ->
