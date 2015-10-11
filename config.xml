@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="com.ionicframework.coffeesidemenu980691" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>Buddhist Meditation</name>
+  <name>Meditation</name>
   <description>
-        Triratna Buddist Meditation app
+        Triratna Buddhist Community Meditation app
     </description>
   <author email="paolo@paolomaffei.it" href="http://thebuddhistcentre.com/">
       Paolo Maffei
