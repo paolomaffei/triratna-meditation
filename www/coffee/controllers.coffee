@@ -238,7 +238,7 @@ mod.controller "BellsOnlyMeditationCtrl", ($scope, $stateParams) ->
   $scope.pageTitle = meditationObject.title
   $scope.categoryTitle = categoryObject.title
   $scope.stages = categoryObject.stages
-  $scope.currentStage = 4
+  $scope.currentStage = 1
   
   #timer defaults
   $scope.isPlaying = false
