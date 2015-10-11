@@ -25,6 +25,13 @@ app.config ($stateProvider, $urlRouterProvider) ->
       controller: 'AppCtrl'
     )
     
+    .state('app.about',
+      url: '/about',
+      views:
+        menuContent:
+          templateUrl: 'templates/about.html'
+    )
+    
     .state('app.categories',
       url: '/categories',
       views:
