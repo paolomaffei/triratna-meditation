@@ -1,9 +1,9 @@
-<ion-view view-title="{{pageTitle}} Meditations">
+<ion-view view-title="{{pageTitle}}">
   <ion-content>
     <ion-list>
       <ion-item class="item-icon-left animated fadeInLeft" ng-repeat="meditation in meditations" href="#/app/{{meditation.type}}-meditation/{{meditation.id}}">
         <i ng-class="getIconForMeditationType(meditation.type)"></i>
-        {{meditation.title}} ({{meditation.duration | formatTime:"m [minutes]"}})
+        {{meditation.title}} ({{meditation.duration | formatTime:"m [min]"}})
       </ion-item>
     </ion-list>
   </ion-content>

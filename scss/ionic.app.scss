@@ -15,6 +15,12 @@ $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
 
+//make fonts bigger
+$font-size-base:                  18px !default;
+$bar-title-font-size:             20px !default;
+$item-font-size:                  20px !default;
+$line-height-base:                1.8 !default; // 20/14
+
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
