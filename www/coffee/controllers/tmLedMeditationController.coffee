@@ -17,10 +17,17 @@ mod.controller "tmLedMeditationController", ($scope, $stateParams, $ionicLoading
   $scope.duration = meditationObject.duration #media.getDuration() returns -1 even when media is ready!
   $scope.position = 0
   
+  insomniaSucc = ->
+    console.log 'insomnia success'
+  insomniaError = (e) ->
+    alert 'insomnia error', e
+  
   $scope.play = ->
     media.play() if media
+    window.plugins?.insomnia?.keepAwake insomniaSucc insomniaError
   $scope.pause = ->
     media.pause() if media
+    window.plugins?.insomnia?.allowSleepAgain insomniaSucc insomniaError
   
   #clear up resources on leaving page
   $scope.$on "$ionicView.beforeLeave", ->
@@ -29,6 +36,7 @@ mod.controller "tmLedMeditationController", ($scope, $stateParams, $ionicLoading
       media.stop()
       media.release()
     clearInterval mediaTimer if mediaTimer
+    window.plugins?.insomnia?.allowSleepAgain insomniaSucc insomniaError
   
   if ionic.Platform.isWebView()
     ionic.Platform.ready ->

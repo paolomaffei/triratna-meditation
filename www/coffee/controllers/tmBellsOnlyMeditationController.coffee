@@ -19,24 +19,31 @@ mod.controller "tmBellsOnlyMeditationController", ($scope, $stateParams, tmMedit
   $scope.duration = meditationObject.duration #media.getDuration() returns -1 even when media is ready!
   $scope.stageDuration = $scope.duration / $scope.stages
   
+  insomniaSucc = ->
+    console.log 'insomnia success'
+  insomniaError = (e) ->
+    alert 'insomnia error', e
+  
   #todo: do not allow play and pause until $scope.ready
   $scope.play = ->
     if $scope.position == 0
-      if bell then bell.play() else console.log "bell.play" #debug only
+      if bell then bell.play()
     
     $scope.isPlaying = true
     mediaTimer = setInterval timerFunction, 1000
+    window.plugins?.insomnia?.keepAwake insomniaSucc insomniaError
     
   $scope.pause = ->
     $scope.isPlaying = false
     clearInterval mediaTimer
+    window.plugins?.insomnia?.allowSleepAgain insomniaSucc insomniaError
   
   timerFunction = ->    
     $scope.position++
     $scope.stagePosition++
     
     if $scope.stagePosition == $scope.stageDuration #stage ended
-      if bell then bell.play() else console.log "bell.play" #debug only
+      if bell then bell.play()
       
       if $scope.currentStage == $scope.stages #meditation ended
         $scope.position = $scope.stagePosition = 0
@@ -57,6 +64,7 @@ mod.controller "tmBellsOnlyMeditationController", ($scope, $stateParams, tmMedit
     if bell
       bell.stop()
       bell.release()
+    window.plugins?.insomnia?.allowSleepAgain insomniaSucc insomniaError
   
   if ionic.Platform.isWebView()
     ionic.Platform.ready ->
