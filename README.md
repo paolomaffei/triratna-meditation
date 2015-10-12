@@ -17,11 +17,12 @@ In a different terminal window,
 ionic serve
 ```
 
-Known problems
----
-When the .apk file generated from 'ionic build android' is bigger than 100mb (which it may very well be with the .mp3 files not included in this repo), the emulator may refuse to load
-
 Troubleshooting
 ---
+When adding a new .coffee file, you may have to kill the gulp process and start it again for it to pick up the new coffee file (and therefore compile it into application.js)
+
+New .coffee files should be in subdirectories of www/ so that gulp watch is sure to concatenate module.coffee (which contains module 'starter.controllers' definition) before using that module
+
+When the .apk file generated from `ionic build android` is bigger than 100mb (which it may very well be with the .mp3 files not included in this repo), the android emulator may refuse to load with error INSUFFICIENT STORAGE.
 
 If you get an error on running `gulp watch`, try `npm install -g gulp-cli`.

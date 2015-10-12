@@ -1,9 +1,9 @@
-app = angular.module('TriratnaMeditation', [
+app = angular.module 'TriratnaMeditation', [
   'ionic'
   'starter.controllers'
   'underscore'
   'ngCordova'
-])
+]
 
 app.run ($ionicPlatform) ->
   $ionicPlatform.ready ->
@@ -22,7 +22,7 @@ app.config ($stateProvider, $urlRouterProvider) ->
       url: '/app'
       abstract: true
       templateUrl: 'templates/menu.html'
-      controller: 'AppCtrl'
+      controller: 'tmAppController'
     )
     
     .state('app.about',
@@ -37,7 +37,7 @@ app.config ($stateProvider, $urlRouterProvider) ->
       views:
         menuContent:
           templateUrl: 'templates/categories.html'
-          controller: 'CategoriesCtrl'
+          controller: 'tmCategoriesController'
     )
 
     .state('app.category',
@@ -45,7 +45,7 @@ app.config ($stateProvider, $urlRouterProvider) ->
       views:
         menuContent:
           templateUrl: 'templates/category.html'
-          controller: 'CategoryCtrl'
+          controller: 'tmCategoryController'
     )
     
      .state('app.ledmeditation',
@@ -53,7 +53,7 @@ app.config ($stateProvider, $urlRouterProvider) ->
       views:
         menuContent:
           templateUrl: 'templates/ledmeditation.html'
-          controller: 'LedMeditationCtrl'
+          controller: 'tmLedMeditationController'
     )
     
     .state('app.bellsonlymeditation',
@@ -61,7 +61,7 @@ app.config ($stateProvider, $urlRouterProvider) ->
       views:
         menuContent:
           templateUrl: 'templates/bellsonlymeditation.html'
-          controller: 'BellsOnlyMeditationCtrl'
+          controller: 'tmBellsOnlyMeditationController'
     )
 
   # if none of the above states are matched, use this as the fallback

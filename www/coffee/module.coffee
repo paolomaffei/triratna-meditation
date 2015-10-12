@@ -1,0 +1,1 @@
+mod = angular.module "starter.controllers", ["angular-momentjs"]
