@@ -53,7 +53,7 @@ app.config ($stateProvider, $urlRouterProvider) ->
       views:
         menuContent:
           templateUrl: 'templates/ledmeditation.html'
-          controller: 'tmLedMeditationController'
+          controller: 'mmLedMeditationController'
     )
     
     .state('app.bellsonlymeditation',

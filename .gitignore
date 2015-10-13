@@ -1,12 +1,13 @@
 # Specifies intentionally untracked files to ignore when using Git
 # http://git-scm.com/docs/gitignore
 
+*.DS_Store
 node_modules/
 platforms/
 plugins/
 www/js
 www/lib
-*.DS_Store
+www/coffee/lib
 www/resources/*.mp3
 www/css/ionic.app.css
 www/css/ionic.app.min.css
