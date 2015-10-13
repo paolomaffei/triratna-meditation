@@ -8,6 +8,7 @@ plugins/
 www/js
 www/lib
 www/coffee/lib
-www/resources/*.mp3
+www/resources/bw-mp3s
+www/resources/tm-mp3s
 www/css/ionic.app.css
 www/css/ionic.app.min.css
