@@ -1,6 +1,6 @@
 mod = angular.module "starter.controllers"
 
-mod.factory "mmMeditationData", ->
+mod.factory "mmMeditationData", ($q) ->
   
   categories = [
     {
@@ -128,9 +128,18 @@ mod.factory "mmMeditationData", ->
   ]
   
   factory =
-    getResourceFolder: ->
-      return "resources/tm-mp3s/"
-  
+
+    getMediaURL: (fileID) ->
+      defer = $q.defer()
+      
+      s = fileID + ".mp3"
+      if ionic.Platform.isAndroid()
+        defer.resolve "/android_asset/www/resources/tm-mp3s/" + s
+      else
+        defer.resolve "resources/tm-mp3s/" + s
+      
+      return defer.promise
+      
     getCategories: ->
       categories
     
