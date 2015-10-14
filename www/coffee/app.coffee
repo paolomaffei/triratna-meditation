@@ -16,7 +16,9 @@ app.run ($ionicPlatform) ->
     # org.apache.cordova.statusbar required
     StatusBar.styleDefault() if window.StatusBar
 
-app.config ($stateProvider, $urlRouterProvider) ->
+app.config ($stateProvider, $urlRouterProvider, $ionicConfigProvider) ->
+  $ionicConfigProvider.navBar.alignTitle "center"
+  
   $stateProvider
     .state('app',
       url: '/app'
