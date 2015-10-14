@@ -26,3 +26,5 @@ New .coffee files should be in subdirectories of www/ so that gulp watch is sure
 When the .apk file generated from `ionic build android` is bigger than 100mb (which it may very well be with the .mp3 files not included in this repo), the android emulator may refuse to load with error INSUFFICIENT STORAGE.
 
 If you get an error on running `gulp watch`, try `npm install -g gulp-cli`.
+
+Gulp sometimes doesn't pick up changes, restart gulp, change something and make sure ionic serve shows `JS changed:   www/js/application.js`
