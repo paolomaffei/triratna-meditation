@@ -1,12 +1,12 @@
 mod = angular.module "starter.controllers"
 
-mod.controller "tmBellsOnlyMeditationController", ($scope, $stateParams, tmMeditationData) ->
+mod.controller "tmBellsOnlyMeditationController", ($scope, $stateParams, mmMeditationData) ->
   mediaTimer = null
   bell = null
   bellSrc = "resources/bell.mp3"
   
-  meditationObject = tmMeditationData.getMeditationById($stateParams.meditationId)  
-  categoryObject = tmMeditationData.getCategoryById(meditationObject.parentId)
+  meditationObject = mmMeditationData.getMeditationById($stateParams.meditationId)  
+  categoryObject = mmMeditationData.getCategoryById(meditationObject.parentId)
   $scope.pageTitle = meditationObject.title
   $scope.categoryTitle = categoryObject.title
   $scope.stages = categoryObject.stages

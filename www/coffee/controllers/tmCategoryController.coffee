@@ -1,9 +1,9 @@
 mod = angular.module "starter.controllers"
 
-mod.controller "tmCategoryController", ($scope, $stateParams, _, tmMeditationData) ->
+mod.controller "tmCategoryController", ($scope, $stateParams, _, mmMeditationData) ->
   
-  $scope.pageTitle = tmMeditationData.getCategoryById($stateParams.categoryId).title
-  $scope.meditations = tmMeditationData.getMeditationsByCategory $stateParams.categoryId
+  $scope.pageTitle = mmMeditationData.getCategoryById($stateParams.categoryId).title
+  $scope.meditations = mmMeditationData.getMeditationsByCategory $stateParams.categoryId
   
   $scope.getIconForMeditationType = (mt) ->
     if mt == "led"

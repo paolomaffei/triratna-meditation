@@ -1,4 +1,4 @@
 mod = angular.module "starter.controllers"
 
-mod.controller "tmCategoriesController", ($scope, tmMeditationData) ->
-  $scope.categories = tmMeditationData.getCategories()
+mod.controller "tmCategoriesController", ($scope, mmMeditationData) ->
+  $scope.categories = mmMeditationData.getCategories()

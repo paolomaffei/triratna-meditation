@@ -1,6 +1,6 @@
 mod = angular.module "starter.controllers"
 
-mod.factory "tmMeditationData", ->
+mod.factory "mmMeditationData", ->
   
   categories = [
     {
