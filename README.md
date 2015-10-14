@@ -9,6 +9,7 @@ Coffeescript + sass w/ live reloading.
 
 ```
 npm install
+bower install
 gulp watch
 git clone https://github.com/paolomaffei/mobile-meditation.git www/coffee/lib/mobile-meditation
 ```
