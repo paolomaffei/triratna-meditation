@@ -129,7 +129,7 @@ mod.factory "tmMeditationData", ->
   
   factory =
     getResourceFolder: ->
-      return "tm-mp3s"
+      return "resources/tm-mp3s/"
   
     getCategories: ->
       categories
