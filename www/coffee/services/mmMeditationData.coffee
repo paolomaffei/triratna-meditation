@@ -64,6 +64,27 @@ mod.factory "mmMeditationData", ($q) ->
     }
     {
       title: "Timer with bells"
+      id: "body-scan-bells-5min"
+      parentId: "body-scan"
+      duration: 300
+      type: "bells-only"
+    }
+    {
+      title: "Timer with bells"
+      id: "body-scan-bells-10min"
+      parentId: "body-scan"
+      duration: 600
+      type: "bells-only"
+    }
+    {
+      title: "Timer with bells"
+      id: "body-scan-bells-15min"
+      parentId: "body-scan"
+      duration: 900
+      type: "bells-only"
+    }
+    {
+      title: "Timer with bells"
       id: "body-scan-bells-20min"
       parentId: "body-scan"
       duration: 1200
@@ -85,6 +106,27 @@ mod.factory "mmMeditationData", ($q) ->
     }
     {
       title: "Timer with bells"
+      id: "mob-bells-5min"
+      parentId: "mindfulness-of-breathing"
+      duration: 300
+      type: "bells-only"
+    }
+    {
+      title: "Timer with bells"
+      id: "mob-bells-10min"
+      parentId: "mindfulness-of-breathing"
+      duration: 600
+      type: "bells-only"
+    }
+    {
+      title: "Timer with bells"
+      id: "mob-bells-15min"
+      parentId: "mindfulness-of-breathing"
+      duration: 900
+      type: "bells-only"
+    }
+    {
+      title: "Timer with bells"
       id: "mob-bells-20min"
       parentId: "mindfulness-of-breathing"
       duration: 1200
@@ -102,6 +144,27 @@ mod.factory "mmMeditationData", ($q) ->
       id: "mob-bells-40min"
       parentId: "mindfulness-of-breathing"
       duration: 2400
+      type: "bells-only"
+    }
+    {
+      title: "Timer with bells"
+      id: "mb-bells-5min"
+      parentId: "metta-bhavana"
+      duration: 300
+      type: "bells-only"
+    }
+    {
+      title: "Timer with bells"
+      id: "mb-bells-10min"
+      parentId: "metta-bhavana"
+      duration: 600
+      type: "bells-only"
+    }
+    {
+      title: "Timer with bells"
+      id: "mb-bells-15min"
+      parentId: "metta-bhavana"
+      duration: 900
       type: "bells-only"
     }
     {
